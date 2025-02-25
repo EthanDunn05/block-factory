@@ -1,0 +1,13 @@
+[gd_resource type="VoxelBlockyTypeLibrary" script_class="FactoryBlockLibrary" load_steps=6 format=3 uid="uid://ccdj4wx68q7j8"]
+
+[ext_resource type="Script" uid="uid://b058w0ux52p3v" path="res://scripts/block_library/FactoryBlockLibrary.cs" id="1_ejlay"]
+[ext_resource type="VoxelBlockyType" uid="uid://c6vb5c4kmvivd" path="res://assets/blocks/air.tres" id="2_u42lv"]
+[ext_resource type="VoxelBlockyType" uid="uid://sqk5kht68dx7" path="res://assets/blocks/dirt.tres" id="3_sblbu"]
+[ext_resource type="VoxelBlockyType" uid="uid://s8t67w3j6i7x" path="res://assets/blocks/dirt_slab.tres" id="5_ejlay"]
+[ext_resource type="VoxelBlockyType" uid="uid://6t5b1ptycrqu" path="res://assets/blocks/grass.tres" id="5_mpmun"]
+
+[resource]
+types = Array[VoxelBlockyType]([ExtResource("2_u42lv"), ExtResource("5_ejlay"), ExtResource("5_mpmun"), ExtResource("3_sblbu")])
+_id_map_data = PackedStringArray("air", "dirt", "unnamed", "grass", "water", "grass2", "dirt_slab")
+script = ExtResource("1_ejlay")
+metadata/_custom_type_script = "uid://b058w0ux52p3v"

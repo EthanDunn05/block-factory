@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b6cp2t8lh30ad"]
+
+[ext_resource type="Shader" uid="uid://dsenq3frhgd74" path="res://assets/block_shader.gdshader" id="1_nmdml"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nmdml")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0

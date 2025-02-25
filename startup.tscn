@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://rmvc4f5vy5t0"]
+
+[ext_resource type="Script" uid="uid://c1ak7sm5djhnw" path="res://scripts/loading/LoadingScene.cs" id="1_u6427"]
+[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ccdj4wx68q7j8" path="res://assets/block_library.tres" id="3_jojrd"]
+[ext_resource type="Material" uid="uid://b6cp2t8lh30ad" path="res://assets/materials/block_material.tres" id="3_u6427"]
+
+[node name="Startup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("tex")]
+script = ExtResource("1_u6427")
+library = ExtResource("3_jojrd")
+blockMaterial = ExtResource("3_u6427")
+tex = NodePath("../TextureRect")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 156
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -280.0
+offset_right = 280.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2

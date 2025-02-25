@@ -1,0 +1,16 @@
+[gd_resource type="VoxelBlockyType" script_class="SingleTextureMeshBlock" load_steps=5 format=3 uid="uid://6t5b1ptycrqu"]
+
+[ext_resource type="ArrayMesh" uid="uid://d2fivihnote8e" path="res://assets/blocks/models/block.obj" id="1_1wjr3"]
+[ext_resource type="Script" uid="uid://cxm5u7bo7nhn6" path="res://scripts/block_library/SingleTextureMeshBlock.cs" id="1_55gyr"]
+[ext_resource type="Material" uid="uid://b6cp2t8lh30ad" path="res://assets/materials/block_material.tres" id="1_syyo8"]
+[ext_resource type="Texture2D" uid="uid://bu8xsy6dbuced" path="res://assets/blocks/textures/grass_full.png" id="3_syyo8"]
+
+[resource]
+resource_name = "grass"
+unique_name = &"grass"
+script = ExtResource("1_55gyr")
+texture = ExtResource("3_syyo8")
+mesh = ExtResource("1_1wjr3")
+material = ExtResource("1_syyo8")
+collision = Array[AABB]([AABB(0, 0, 0, 1, 1, 1)])
+metadata/_custom_type_script = "uid://cxm5u7bo7nhn6"

@@ -1,0 +1,18 @@
+[gd_resource type="VoxelGeneratorScript" script_class="WorldGeneration" load_steps=4 format=3 uid="uid://bee3drbd00ds7"]
+
+[ext_resource type="Script" uid="uid://rh5pd62wh460" path="res://scripts/worldgen/WorldGeneration.cs" id="1_2bveh"]
+[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ccdj4wx68q7j8" path="res://assets/block_library.tres" id="1_pnu73"]
+
+[sub_resource type="FastNoise2" id="FastNoise2_fxcds"]
+seed = 1341
+period = 100.0
+fractal_type = 1
+
+[resource]
+script = ExtResource("1_2bveh")
+lib = ExtResource("1_pnu73")
+noiseFunc = SubResource("FastNoise2_fxcds")
+seaLevel = 0
+heightmapMin = 20
+heightmapMax = 50
+metadata/_custom_type_script = "uid://rh5pd62wh460"

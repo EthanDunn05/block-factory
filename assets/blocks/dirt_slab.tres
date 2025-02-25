@@ -1,0 +1,16 @@
+[gd_resource type="VoxelBlockyType" script_class="SingleTextureMeshBlock" load_steps=5 format=3 uid="uid://s8t67w3j6i7x"]
+
+[ext_resource type="Material" uid="uid://b6cp2t8lh30ad" path="res://assets/materials/block_material.tres" id="1_5jc8y"]
+[ext_resource type="Script" uid="uid://cxm5u7bo7nhn6" path="res://scripts/block_library/SingleTextureMeshBlock.cs" id="1_d0b7n"]
+[ext_resource type="ArrayMesh" uid="uid://df3i22eebfdcy" path="res://assets/blocks/models/slab.obj" id="1_odcku"]
+[ext_resource type="Texture2D" uid="uid://bamknw2i0ndha" path="res://assets/blocks/textures/dirt.png" id="3_5jc8y"]
+
+[resource]
+resource_name = "dirt_slab"
+unique_name = &"dirt_slab"
+script = ExtResource("1_d0b7n")
+texture = ExtResource("3_5jc8y")
+mesh = ExtResource("1_odcku")
+material = ExtResource("1_5jc8y")
+collision = Array[AABB]([AABB(0, 0, 0, 1, 1, 1)])
+metadata/_custom_type_script = "uid://cxm5u7bo7nhn6"
