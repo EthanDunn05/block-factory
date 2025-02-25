@@ -35,7 +35,7 @@ area_edit_notification_enabled = true
 run_stream_in_editor = false
 
 [node name="Player" parent="." node_paths=PackedStringArray("Terrain") instance=ExtResource("3_7cye5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.1295, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 71.3101, 0)
 Terrain = NodePath("../VoxelTerrain")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

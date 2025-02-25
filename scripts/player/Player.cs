@@ -2,7 +2,7 @@ using Godot;
 
 namespace BlockFactory.scripts.player;
 
-public partial class Player : CharacterBody3D
+public partial class Player : Node3D
 {
 	[Export] public VoxelTerrain Terrain;
 	public VoxelTool VoxelTool;

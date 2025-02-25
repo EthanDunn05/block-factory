@@ -8,10 +8,13 @@ public partial class PlayerMovement : Node
 	private Player player;
 
 	[Export] public Camera3D Camera;
+	[Export] private Aabb collision;
 
 	[Export] private float moveSpeed;
 	[Export] private float accel;
 	[Export] private float jumpForce;
+	[Export] private float gravity;
+	[Export] private float terminalVel;
 
 	private bool mouseCaptured = false;
 
@@ -19,9 +22,10 @@ public partial class PlayerMovement : Node
 	private bool jumpHeld;
 	private Vector2 lookDir = Vector2.Zero;
 
-	private Vector3 moveVel;
+	private const float SpeedMult = 0.001f;
+	private Vector3 walkVel;
 	private Vector3 gravVel;
-	private Vector3 jumpVel;
+	private Vector3 prevVel;
 
 	private VoxelBoxMover boxMover = new();
 
@@ -31,6 +35,9 @@ public partial class PlayerMovement : Node
 
 		Input.SetMouseMode(Input.MouseModeEnum.Captured);
 		mouseCaptured = true;
+		
+		boxMover.SetMaxStepHeight(1f); // Full block step height :)
+		boxMover.SetStepClimbingEnabled(true);
 	}
 
 	public override void _UnhandledInput(InputEvent evt)
@@ -57,54 +64,59 @@ public partial class PlayerMovement : Node
 		}
 	}
 
+	// Physics process gives stuttery movement and isn't good for first person player movement.
 	public override void _Process(double delta)
 	{
-		// TODO: Change this to VoxelBoxMover
+		if (!HasNode(player.Terrain.GetPath())) return;
+		if (!player.VoxelTool.IsAreaEditable(new Aabb(collision.Position + player.Position, collision.Size))) return;
+		
+		var onFloor = CheckOnFloor();
 		
 		var forward = Camera.GlobalTransform.Basis * new Vector3(moveAxis.X, 0f, moveAxis.Y);
 		var walkDir = new Vector3(forward.X, 0f, forward.Z).Normalized();
 
-		moveVel = moveVel.MoveToward(walkDir * moveSpeed * moveAxis.Length(), (float) (delta * accel));
+		walkVel = walkVel.MoveToward(walkDir * moveSpeed, accel * (float) delta);
 
-		if (!player.IsOnFloor())
-		{
-			gravVel = gravVel.MoveToward(gravVel + player.GetGravity(), (float) (player.GetGravity().Length() * delta));
-			jumpVel = jumpVel.MoveToward(Vector3.Zero, (float) (player.GetGravity().Length() * delta));
-		}
-		else
+		if (onFloor)
 		{
 			gravVel = Vector3.Zero;
-			jumpVel = Vector3.Zero;
 
 			if (jumpHeld)
 			{
-				jumpVel = -player.GetGravity().Normalized() * jumpForce;
+				gravVel = Vector3.Up * jumpForce;
 			}
 		}
-
-		player.Velocity = moveVel + gravVel + jumpVel;
-
-		// Check for stepping up block
-		if (player.IsOnFloor())
+		else
 		{
-			var raycastOrigin = new Vector3(
-				player.GlobalPosition.X, 
-				player.GlobalPosition.Y + 0.5f, // player origin is at their feet, so go up half a block
-				player.GlobalPosition.Z
-			);
-			var raycastDir = new Vector3(player.Velocity.X, 0f, player.Velocity.Z).Normalized();
-			var raycastLen = (new Vector3(player.Velocity.X, 0f, player.Velocity.Z) * (float) delta).Length() + 0.5f;
-			
-			// Check block at feet and none at head
-			var footRaycast = player.VoxelTool.Raycast(raycastOrigin, raycastDir, raycastLen);
-			var headRaycast = player.VoxelTool.Raycast(raycastOrigin + Vector3.Up, raycastDir, raycastLen);
-			
-			if (footRaycast != null && headRaycast == null)
-			{
-				player.Position += Vector3.Up;
-			}
+			gravVel = gravVel.MoveToward(terminalVel * Vector3.Down, gravity * (float) delta);
 		}
 
-		player.MoveAndSlide();
+		var totalVel = (walkVel + gravVel) * (float) delta;
+		var movement = boxMover.GetMotion(player.GlobalPosition, totalVel, collision, player.Terrain);
+		prevVel = movement;
+		player.GlobalTranslate(movement);
+	}
+
+	private bool CheckOnFloor()
+	{
+		// Yes this lags behind by a frame, but I don't care
+		if (prevVel.Y > -0.001f && prevVel.Y < 0.001f)
+		{
+			var colRect = new Rect2(collision.Position.X, collision.Position.Z,collision.Size.X, collision.Size.Y);
+
+			// Raycast the 4 corners of the collision
+			if (CastFloor(colRect.Position)) return true;
+			if (CastFloor(colRect.Position + colRect.Size * Vector2.Right)) return true;
+			if (CastFloor(colRect.Position + colRect.Size * Vector2.Down)) return true;
+			if (CastFloor(colRect.Position + colRect.Size * Vector2.One)) return true;
+		}
+
+		return false;
+	}
+
+	private bool CastFloor(Vector2 offset)
+	{
+		var cast = player.VoxelTool.Raycast(player.GlobalPosition + new Vector3(offset.X, 0f, offset.Y), Vector3.Down, 0.1f);
+		return cast != null && cast.Distance < 0.01f;
 	}
 }
