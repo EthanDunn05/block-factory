@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rmvc4f5vy5t0"]
 
 [ext_resource type="Script" uid="uid://c1ak7sm5djhnw" path="res://scripts/loading/LoadingScene.cs" id="1_u6427"]
-[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ccdj4wx68q7j8" path="res://assets/block_library.tres" id="3_jojrd"]
+[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ltivypoh4bxr" path="res://assets/block_library.tres" id="3_jojrd"]
 [ext_resource type="Material" uid="uid://b6cp2t8lh30ad" path="res://assets/materials/block_material.tres" id="3_u6427"]
 
 [node name="Startup" type="Control"]

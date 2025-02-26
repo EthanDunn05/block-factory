@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckigcpf276hoe"]
 
 [ext_resource type="VoxelGeneratorScript" uid="uid://bee3drbd00ds7" path="res://assets/worldgen.tres" id="1_272bh"]
-[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ccdj4wx68q7j8" path="res://assets/block_library.tres" id="2_1bvp3"]
+[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ltivypoh4bxr" path="res://assets/block_library.tres" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bb4m17igxq246" path="res://player.tscn" id="3_7cye5"]
 
 [sub_resource type="VoxelMesherBlocky" id="VoxelMesherBlocky_7a08w"]

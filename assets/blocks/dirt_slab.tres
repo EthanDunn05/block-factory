@@ -1,16 +1,85 @@
-[gd_resource type="VoxelBlockyType" script_class="SingleTextureMeshBlock" load_steps=5 format=3 uid="uid://s8t67w3j6i7x"]
+[gd_resource type="VoxelBlockyType" load_steps=13 format=3 uid="uid://5x84o4tulsau"]
 
-[ext_resource type="Material" uid="uid://b6cp2t8lh30ad" path="res://assets/materials/block_material.tres" id="1_5jc8y"]
-[ext_resource type="Script" uid="uid://cxm5u7bo7nhn6" path="res://scripts/block_library/SingleTextureMeshBlock.cs" id="1_d0b7n"]
 [ext_resource type="ArrayMesh" uid="uid://df3i22eebfdcy" path="res://assets/blocks/models/slab.obj" id="1_odcku"]
-[ext_resource type="Texture2D" uid="uid://bamknw2i0ndha" path="res://assets/blocks/textures/dirt.png" id="3_5jc8y"]
+[ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_5jc8y"]
+[ext_resource type="Texture2D" uid="uid://bamknw2i0ndha" path="res://assets/blocks/textures/dirt.png" id="3_8bum2"]
+[ext_resource type="Script" uid="uid://daa24wir6wpcy" path="res://scripts/blocks/attributes/SlabAttribute.cs" id="4_5jc8y"]
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_8bum2"]
+collision_aabbs = Array[AABB]([AABB(0, 0, 0, 1, 0.5, 1)])
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_q4vqh"]
+collision_aabbs = Array[AABB]([AABB(0, 0.5, 0, 1, 0.5, 1)])
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+mesh_ortho_rotation_index = 18
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_5jc8y"]
+collision_aabbs = Array[AABB]([AABB(0.5, 0, 0, 0.5, 1, 1)])
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+mesh_ortho_rotation_index = 11
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_ckfhv"]
+collision_aabbs = Array[AABB]([AABB(0, 0, 0.5, 1, 1, 0.5)])
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+mesh_ortho_rotation_index = 23
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_lyn6b"]
+collision_aabbs = Array[AABB]([AABB(0, 0, 0, 0.5, 1, 1)])
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+mesh_ortho_rotation_index = 5
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_0q4gq"]
+collision_aabbs = Array[AABB]([AABB(0, 0, 0, 1, 1, 0.5)])
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+mesh_ortho_rotation_index = 12
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyAttributeCustom" id="VoxelBlockyAttributeCustom_ckfhv"]
+attribute_name = &"slab"
+value_count = 6
+values/0/name = &"bottom"
+values/1/name = &"top"
+values/2/name = &"north"
+values/3/name = &"south"
+values/4/name = &"east"
+values/5/name = &"west"
+script = ExtResource("4_5jc8y")
+metadata/_custom_type_script = "uid://daa24wir6wpcy"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_vjuis"]
+collision_enabled_0 = true
+mesh = ExtResource("1_odcku")
+script = ExtResource("2_5jc8y")
+texture = ExtResource("3_8bum2")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
 
 [resource]
 resource_name = "dirt_slab"
 unique_name = &"dirt_slab"
-script = ExtResource("1_d0b7n")
-texture = ExtResource("3_5jc8y")
-mesh = ExtResource("1_odcku")
-material = ExtResource("1_5jc8y")
-collision = Array[AABB]([AABB(0, 0, 0, 1, 1, 1)])
-metadata/_custom_type_script = "uid://cxm5u7bo7nhn6"
+base_model = SubResource("VoxelBlockyModelMesh_vjuis")
+attributes = Array[VoxelBlockyAttribute]([SubResource("VoxelBlockyAttributeCustom_ckfhv")])
+_variant_models_data = [[[&"slab", 0], SubResource("VoxelBlockyModelMesh_8bum2")], [[&"slab", 1], SubResource("VoxelBlockyModelMesh_q4vqh")], [[&"slab", 2], SubResource("VoxelBlockyModelMesh_5jc8y")], [[&"slab", 3], SubResource("VoxelBlockyModelMesh_ckfhv")], [[&"slab", 4], SubResource("VoxelBlockyModelMesh_lyn6b")], [[&"slab", 5], SubResource("VoxelBlockyModelMesh_0q4gq")]]

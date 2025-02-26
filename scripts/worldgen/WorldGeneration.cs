@@ -1,4 +1,5 @@
 using System;
+using BlockFactory.scripts.block_library;
 using Godot;
 
 namespace BlockFactory.scripts.worldgen;
@@ -7,18 +8,20 @@ namespace BlockFactory.scripts.worldgen;
 [Tool]
 public partial class WorldGeneration : VoxelGeneratorScript
 {
-    [Export] private block_library.FactoryBlockLibrary lib;
-
     [Export] private FastNoise2 noiseFunc;
 
     [Export] private int seaLevel;
     [Export] private int heightmapMin;
     [Export] private int heightmapMax;
+
+    private FactoryBlockLibrary? lib;
     
     private int HeightRange => heightmapMax - heightmapMin;
 
     public override void _GenerateBlock(VoxelBuffer buffer, Vector3I origin, int lod)
     {
+        lib ??= FactoryData.BlockLibrary;
+        
         var blockSize = buffer.GetSize().X;
 
         var chunkPos = new Vector3(

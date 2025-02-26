@@ -1,13 +1,13 @@
-[gd_resource type="VoxelBlockyTypeLibrary" script_class="FactoryBlockLibrary" load_steps=6 format=3 uid="uid://ccdj4wx68q7j8"]
+[gd_resource type="VoxelBlockyTypeLibrary" script_class="FactoryBlockLibrary" load_steps=6 format=3 uid="uid://ltivypoh4bxr"]
 
-[ext_resource type="Script" uid="uid://b058w0ux52p3v" path="res://scripts/block_library/FactoryBlockLibrary.cs" id="1_ejlay"]
-[ext_resource type="VoxelBlockyType" uid="uid://c6vb5c4kmvivd" path="res://assets/blocks/air.tres" id="2_u42lv"]
-[ext_resource type="VoxelBlockyType" uid="uid://sqk5kht68dx7" path="res://assets/blocks/dirt.tres" id="3_sblbu"]
-[ext_resource type="VoxelBlockyType" uid="uid://s8t67w3j6i7x" path="res://assets/blocks/dirt_slab.tres" id="5_ejlay"]
-[ext_resource type="VoxelBlockyType" uid="uid://6t5b1ptycrqu" path="res://assets/blocks/grass.tres" id="5_mpmun"]
+[ext_resource type="Script" uid="uid://b058w0ux52p3v" path="res://scripts/block_library/FactoryBlockLibrary.cs" id="1_wy13w"]
+[ext_resource type="VoxelBlockyType" uid="uid://c6vb5c4kmvivd" path="res://assets/blocks/air.tres" id="2_sblbu"]
+[ext_resource type="VoxelBlockyType" uid="uid://bm3g1smxlstj" path="res://assets/blocks/dirt.tres" id="3_ejlay"]
+[ext_resource type="VoxelBlockyType" uid="uid://o1u0maeau71r" path="res://assets/blocks/grass.tres" id="4_mpmun"]
+[ext_resource type="VoxelBlockyType" uid="uid://5x84o4tulsau" path="res://assets/blocks/dirt_slab.tres" id="5_ejlay"]
 
 [resource]
-types = Array[VoxelBlockyType]([ExtResource("2_u42lv"), ExtResource("5_ejlay"), ExtResource("5_mpmun"), ExtResource("3_sblbu")])
-_id_map_data = PackedStringArray("air", "dirt", "unnamed", "grass", "water", "grass2", "dirt_slab")
-script = ExtResource("1_ejlay")
+types = Array[VoxelBlockyType]([ExtResource("2_sblbu"), ExtResource("3_ejlay"), ExtResource("4_mpmun"), ExtResource("5_ejlay")])
+_id_map_data = PackedStringArray("air", "dirt", "grass", "dirt_slab[slab=0]", "dirt_slab[slab=1]", "dirt_slab[slab=2]", "dirt_slab[slab=3]", "dirt_slab[slab=4]", "dirt_slab[slab=5]")
+script = ExtResource("1_wy13w")
 metadata/_custom_type_script = "uid://b058w0ux52p3v"
