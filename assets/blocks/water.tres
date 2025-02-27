@@ -1,0 +1,29 @@
+[gd_resource type="VoxelBlockyType" load_steps=6 format=3 uid="uid://cwpibrctdbrn6"]
+
+[sub_resource type="Gradient" id="Gradient_g54u2"]
+offsets = PackedFloat32Array(0.465596)
+colors = PackedColorArray(0.244776, 0.244776, 0.244776, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yarfa"]
+gradient = SubResource("Gradient_g54u2")
+width = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g54u2"]
+transparency = 1
+albedo_color = Color(0.256, 0.455467, 0.8, 0.454902)
+metallic = 0.2
+metallic_specular = 1.0
+refraction_texture = SubResource("GradientTexture1D_yarfa")
+
+[sub_resource type="VoxelBlockyFluid" id="VoxelBlockyFluid_yarfa"]
+material = SubResource("StandardMaterial3D_g54u2")
+
+[sub_resource type="VoxelBlockyModelFluid" id="VoxelBlockyModelFluid_4phsc"]
+transparency_index = 1
+fluid = SubResource("VoxelBlockyFluid_yarfa")
+level = 1
+
+[resource]
+resource_name = "water"
+unique_name = &"water"
+base_model = SubResource("VoxelBlockyModelFluid_4phsc")

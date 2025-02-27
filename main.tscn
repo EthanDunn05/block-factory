@@ -1,27 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckigcpf276hoe"]
+[gd_scene load_steps=10 format=3 uid="uid://ckigcpf276hoe"]
 
 [ext_resource type="VoxelGeneratorScript" uid="uid://bd022sh2wr20o" path="res://assets/worldgen/worldgen.tres" id="1_1bvp3"]
 [ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ltivypoh4bxr" path="res://assets/block_library.tres" id="2_1bvp3"]
-[ext_resource type="Script" uid="uid://cgicoby5uyjod" path="res://scripts/FactoryTerrain.cs" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bb4m17igxq246" path="res://player.tscn" id="3_7cye5"]
 
 [sub_resource type="VoxelMesherBlocky" id="VoxelMesherBlocky_7a08w"]
 library = ExtResource("2_1bvp3")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
-sky_top_color = Color(0.320066, 0.448048, 0.668854, 1)
-sky_horizon_color = Color(0.512256, 0.670537, 0.844534, 1)
-ground_bottom_color = Color(0.578588, 0.69562, 0.796282, 1)
-ground_horizon_color = Color(0.471491, 0.691896, 0.785498, 1)
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_h2yge"]
 
 [sub_resource type="Sky" id="Sky_84yvt"]
-sky_material = SubResource("ProceduralSkyMaterial_h2yge")
+sky_material = SubResource("PhysicalSkyMaterial_h2yge")
 
 [sub_resource type="Environment" id="Environment_cdrt6"]
 background_mode = 2
 sky = SubResource("Sky_84yvt")
 tonemap_mode = 4
 ssr_enabled = true
+sdfgi_enabled = true
 glow_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.728939, 0.763784, 0.795561, 1)
@@ -29,9 +25,10 @@ fog_density = 1.0
 fog_sky_affect = 0.0
 fog_depth_begin = 200.0
 fog_depth_end = 240.0
-volumetric_fog_density = 0.0019
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.83, 0.903667, 1, 1)
-volumetric_fog_length = 75.79
+volumetric_fog_length = 128.0
 volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h2yge"]
@@ -40,22 +37,20 @@ volumetric_fog_sky_affect = 0.0
 
 [node name="Node3D" type="Node3D"]
 
-[node name="VoxelTerrain" type="VoxelTerrain" parent="." node_paths=PackedStringArray("player")]
+[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
 generator = ExtResource("1_1bvp3")
 mesher = SubResource("VoxelMesherBlocky_7a08w")
 max_view_distance = 256
+generate_collisions = false
 area_edit_notification_enabled = true
 run_stream_in_editor = false
-script = ExtResource("3_1bvp3")
-player = NodePath("../Player")
-LodBlocksRadius = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("Terrain") instance=ExtResource("3_7cye5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 64, 0)
 Terrain = NodePath("../VoxelTerrain")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.679224, 0.733931, 0, -0.733931, -0.679224, 0, 85.2331, 0)
+transform = Transform3D(1, 0, 0, 0, 0.61672, 0.787183, 0, -0.787183, 0.61672, 0, 85.2331, 0)
 light_energy = 1.1
 shadow_enabled = true
 

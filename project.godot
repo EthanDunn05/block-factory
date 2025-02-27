@@ -76,5 +76,4 @@ textures/default_filters/use_nearest_mipmap_filter=true
 
 [voxel]
 
-threads/main/time_budget_ms=4
 ownership_checks=false
