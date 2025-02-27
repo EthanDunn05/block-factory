@@ -1,0 +1,52 @@
+[gd_resource type="VoxelBlockyType" load_steps=12 format=3 uid="uid://vv6djrjplw8o"]
+
+[ext_resource type="ArrayMesh" uid="uid://cj1tu8u6qv6jw" path="res://assets/blocks/models/short_grass.obj" id="1_pu4fh"]
+[ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_qjidw"]
+[ext_resource type="Texture2D" uid="uid://syc8e816lh3r" path="res://assets/blocks/models/short_grass.png" id="3_wwvp3"]
+[ext_resource type="ArrayMesh" uid="uid://dnteneunmg0aw" path="res://assets/blocks/models/short_grass_lod.obj" id="4_wwvp3"]
+[ext_resource type="Script" uid="uid://bdph71vggfmc" path="res://scripts/blocks/attributes/LodAttribute.cs" id="5_rmq5b"]
+[ext_resource type="Script" uid="uid://ceqne3362obwd" path="res://scripts/blocks/PlantBlock.cs" id="6_rmq5b"]
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_cb3ri"]
+collision_aabbs = Array[AABB]([AABB(0.1, 0, 0.1, 0.8, 0.25, 0.8)])
+collision_mask = 2
+collision_enabled_0 = false
+mesh = ExtResource("1_pu4fh")
+script = ExtResource("2_qjidw")
+texture = ExtResource("3_wwvp3")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w64su"]
+albedo_texture = ExtResource("3_wwvp3")
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_dxfxn"]
+collision_mask = 2
+material_override_0 = SubResource("StandardMaterial3D_w64su")
+collision_enabled_0 = false
+mesh = ExtResource("4_wwvp3")
+script = ExtResource("2_qjidw")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[sub_resource type="VoxelBlockyAttributeCustom" id="VoxelBlockyAttributeCustom_4bytb"]
+attribute_name = &"lod"
+values/0/name = &"high"
+values/1/name = &"low"
+script = ExtResource("5_rmq5b")
+metadata/_custom_type_script = "uid://bdph71vggfmc"
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_pu4fh"]
+collision_aabbs = Array[AABB]([AABB(0.1, 0, 0.1, 0.8, 0.25, 0.8)])
+collision_mask = 2
+collision_enabled_0 = false
+mesh = ExtResource("1_pu4fh")
+script = ExtResource("2_qjidw")
+texture = ExtResource("3_wwvp3")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[resource]
+resource_name = "short_grass"
+unique_name = &"short_grass"
+base_model = SubResource("VoxelBlockyModelMesh_pu4fh")
+attributes = Array[VoxelBlockyAttribute]([SubResource("VoxelBlockyAttributeCustom_4bytb")])
+_variant_models_data = [[[&"lod", 0], SubResource("VoxelBlockyModelMesh_cb3ri")], [[&"lod", 1], SubResource("VoxelBlockyModelMesh_dxfxn")]]
+script = ExtResource("6_rmq5b")

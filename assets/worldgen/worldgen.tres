@@ -1,0 +1,9 @@
+[gd_resource type="VoxelGeneratorScript" script_class="WorldGeneration" load_steps=3 format=3 uid="uid://bd022sh2wr20o"]
+
+[ext_resource type="VoxelGeneratorGraph" uid="uid://lhasu25sogvb" path="res://assets/worldgen/main_graph.tres" id="1_gys8x"]
+[ext_resource type="Script" uid="uid://rh5pd62wh460" path="res://scripts/worldgen/WorldGeneration.cs" id="1_yx47t"]
+
+[resource]
+script = ExtResource("1_yx47t")
+landShapeGraph = ExtResource("1_gys8x")
+metadata/_custom_type_script = "uid://rh5pd62wh460"

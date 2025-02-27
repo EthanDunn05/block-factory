@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://4qcwdfowirp1"]
+
+[ext_resource type="VoxelGeneratorGraph" uid="uid://lhasu25sogvb" path="res://assets/worldgen/main_graph.tres" id="1_dtf0e"]
+
+[sub_resource type="VoxelBlockyModelEmpty" id="VoxelBlockyModelEmpty_dtf0e"]
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_av4ov"]
+color = Color(0.675304, 0.698353, 0.6853, 1)
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_dtf0e"]
+color = Color(0.47994, 0.325377, 0.171167, 1)
+
+[sub_resource type="VoxelBlockyModelCube" id="VoxelBlockyModelCube_h5f37"]
+color = Color(0.176133, 0.778896, 0.560993, 1)
+
+[sub_resource type="VoxelBlockyLibrary" id="VoxelBlockyLibrary_h5f37"]
+models = Array[VoxelBlockyModel]([SubResource("VoxelBlockyModelEmpty_dtf0e"), SubResource("VoxelBlockyModelCube_av4ov"), SubResource("VoxelBlockyModelCube_dtf0e"), SubResource("VoxelBlockyModelCube_h5f37")])
+
+[sub_resource type="VoxelMesherBlocky" id="VoxelMesherBlocky_33ec2"]
+library = SubResource("VoxelBlockyLibrary_h5f37")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtf0e"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_av4ov"]
+transparency = 1
+albedo_color = Color(0.0779588, 0.32292, 0.670549, 0.780392)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5f37"]
+material = SubResource("StandardMaterial3D_av4ov")
+size = Vector2(2048, 2048)
+
+[node name="Preview" type="Node3D"]
+
+[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+generator = ExtResource("1_dtf0e")
+mesher = SubResource("VoxelMesherBlocky_33ec2")
+lod_distance = 128.0
+material = SubResource("StandardMaterial3D_dtf0e")
+threaded_update_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("PlaneMesh_h5f37")

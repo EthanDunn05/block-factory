@@ -5,90 +5,76 @@ using Godot;
 namespace BlockFactory.scripts.worldgen;
 
 [GlobalClass]
-[Tool]
 public partial class WorldGeneration : VoxelGeneratorScript
 {
-    [Export] private FastNoise2 noiseFunc;
+	public const int Seed = 1337;
 
-    [Export] private int seaLevel;
-    [Export] private int heightmapMin;
-    [Export] private int heightmapMax;
+	[Export] private VoxelGeneratorGraph landShapeGraph;
 
-    private FactoryBlockLibrary? lib;
-    
-    private int HeightRange => heightmapMax - heightmapMin;
+	private FactoryBlockLibrary lib;
 
-    public override void _GenerateBlock(VoxelBuffer buffer, Vector3I origin, int lod)
-    {
-        lib ??= FactoryData.BlockLibrary;
-        
-        var blockSize = buffer.GetSize().X;
+	public WorldGeneration()
+	{
+		lib = FactoryData.BlockLibrary;
+		
+		
+	}
 
-        var chunkPos = new Vector3(
-            origin.X >> 4,
-            origin.Y >> 4,
-            origin.Z >> 4
-        );
+	public override void _GenerateBlock(VoxelBuffer outBuffer, Vector3I blockPos, int lod)
+	{
+		outBuffer.Fill(lib.GetDefaultId("air"));
+		
+		
+		
+		LandShape(outBuffer, blockPos);
+	}
+	
 
-        if (origin.Y + blockSize * 2 < heightmapMin)
-        {
-            buffer.Fill(lib.GetDefaultId("dirt"));
-        }
-        else if (origin.Y > heightmapMax)
-        {
-            buffer.Fill(lib.GetDefaultId("air"));
-        }
-        // noise height
-        else
-        {
-            for (var x = 0; x < blockSize; x++)
-            for (var z = 0; z < blockSize; z++)
-            {
-                var height = GetHeight(new Vector2(origin.X + x, origin.Z + z));
-                var relativeHeight = height - origin.Y;
+	private void LandShape(VoxelBuffer outBuffer, Vector3I blockPos)
+	{
+		var graphBuffer = new VoxelBuffer();
+		graphBuffer.Create(outBuffer.GetSize().X, outBuffer.GetSize().Y,outBuffer.GetSize().Z);
+		
+		landShapeGraph.GenerateBlock(graphBuffer, blockPos, 0);
+		outBuffer.CopyChannelFrom(graphBuffer, 0);
+		outBuffer.RemapValues(0, new int[]
+		{
+			(int) lib.GetDefaultId("air"),
+			(int) lib.GetDefaultId("stone"),
+			(int) lib.GetDefaultId("dirt"),
+			(int) lib.GetDefaultId("grass"),
+		});
+	}
 
-                if (relativeHeight > blockSize)
-                {
-                    buffer.FillArea(lib.GetDefaultId("dirt"),
-                        new Vector3I(x, 0, z),
-                        new Vector3I(x+1, blockSize, z+1)
-                    );
-                }
-                else if (relativeHeight > 0)
-                {
-                    buffer.FillArea(lib.GetDefaultId("dirt"),
-                        new Vector3I(x, 0, z),
-                        new Vector3I(x+1, (int) relativeHeight, z+1)
-                    );
-                   buffer.SetVoxel(lib.GetDefaultId("grass"), x, (int) (relativeHeight - 1), z);
-                    
-                    // if ((relativeHeight - (int) relativeHeight) > 0.5f)
-                    // {
-                    //     buffer.SetVoxel(lib.GetDefaultId("dirt_slab"), x, (int) (relativeHeight), z);
-                    // }
-                }
+	private void Decorate(VoxelBuffer outBuffer, Vector3I blockPos)
+	{
+		if (outBuffer.IsUniform(0)) return;
 
-                if (height < 0 && origin.Y < HeightRange / 2f)
-                {
-                    var startHeight = Mathf.Min(0f, relativeHeight);
-                    
-                    buffer.FillArea(lib.GetDefaultId("water"),
-                        new Vector3I(x, (int) startHeight, z),
-                        new Vector3I(x + 1, blockSize, z + 1));
-                }
-            }
-        }
-    }
+		var voxelTool = new FactoryVoxelTool(outBuffer.GetVoxelTool());
 
-    private float GetHeight(Vector2 pos)
-    {
-        
-        var noise = Mathf.Remap(noiseFunc.GetNoise2DSingle(pos), -1f, 1f, 0f, 1f);
-        return noise * HeightRange;
-    }
+		var rng = new RandomNumberGenerator();
+		rng.Seed = MakeRngSeed(blockPos);
 
-    public ulong GetChunkSeed(Vector3 chunkPos)
-    {
-        return (ulong) Mathf.Pow(chunkPos.X, 31d * chunkPos.Z);
-    }
+		for (var x = 0; x < outBuffer.GetSize().X; x++)
+		for (var z = 0; z < outBuffer.GetSize().Z; z++)
+		{
+			if (rng.Randf() > 0.5f) continue;
+			
+			var globalPos = new Vector2(x + blockPos.X, z + blockPos.Z);
+			var castPos = new Vector3(globalPos.X, blockPos.Y + outBuffer.GetSize().Y, globalPos.Y);
+			var result = voxelTool.Raycast(castPos, Vector3.Down, outBuffer.GetSize().Y);
+
+			if (result == null) continue;
+		}
+	}
+
+	private int ClampInBufferY(int y, VoxelBuffer buffer)
+	{
+		return Mathf.Clamp(y, 0, buffer.GetSize().Y);
+	}
+
+	private ulong MakeRngSeed(Vector3I blockPos)
+	{
+		return (ulong) Math.Pow(blockPos.X, 31 * blockPos.Z) * Seed;
+	}
 }

@@ -1,0 +1,351 @@
+[gd_resource type="VoxelGraphFunction" load_steps=13 format=3 uid="uid://c17dy5pp4w7a8"]
+
+[sub_resource type="FastNoise2" id="FastNoise2_nwah0"]
+noise_type = 2
+seed = 1335
+period = 512.0
+
+[sub_resource type="Curve" id="Curve_o8ebh"]
+_limits = [-1.0, 0.0, -1.0, 1.0]
+_data = [Vector2(0.375494, 0), 0.102826, 0.102826, 0, 0, Vector2(1, -1), -3.29947, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FastNoise2" id="FastNoise2_7k4re"]
+noise_type = 2
+seed = 1335
+period = 512.0
+fractal_type = 1
+fractal_octaves = 5
+
+[sub_resource type="Curve" id="Curve_xudg0"]
+_limits = [-32.0, 32.0, -1.0, 1.0]
+_data = [Vector2(-1, -32), 0.0, 25.1073, 0, 0, Vector2(-0.130435, -13.944), 45.8305, 45.8305, 0, 0, Vector2(-0.0395256, 4.22685), 0.0, 0.0, 0, 0, Vector2(0.494071, 7.51185), 0.0, 0.0, 0, 0, Vector2(1, 26.8198), 38.1634, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="FastNoise2" id="FastNoise2_y4s0l"]
+noise_type = 2
+seed = 1335
+period = 512.0
+fractal_type = 2
+fractal_octaves = 6
+
+[sub_resource type="Curve" id="Curve_neh5u"]
+_limits = [0.0, 1.0, -1.0, 1.0]
+_data = [Vector2(-1, 0), 0.0, -0.0220885, 0, 0, Vector2(0.509881, 0), 0.0, 0.0, 0, 0, Vector2(0.517787, 0), 0.670401, 0.670401, 0, 0, Vector2(0.750988, 0.729361), 2.27225, 2.27225, 0, 0, Vector2(1, 1), 1.22125, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_i2gxf"]
+_limits = [-1.0, 0.0, -1.0, 1.0]
+_data = [Vector2(0.695652, 0), 0.102826, 0.102826, 0, 0, Vector2(1, -1), -0.025894, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FastNoise2" id="FastNoise2_0qbr0"]
+noise_type = 2
+period = 128.0
+fractal_type = 1
+remap_enabled = true
+remap_output_min = 0.0
+
+[sub_resource type="FastNoise2" id="FastNoise2_dsv4n"]
+noise_type = 2
+seed = 1338
+period = 128.0
+fractal_type = 1
+remap_enabled = true
+remap_output_min = 0.0
+
+[sub_resource type="FastNoise2" id="FastNoise2_8por2"]
+noise_type = 2
+seed = 1338
+period = 128.0
+fractal_type = 1
+remap_enabled = true
+remap_output_min = 0.0
+
+[sub_resource type="FastNoise2" id="FastNoise2_vm0vr"]
+noise_type = 2
+period = 128.0
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="ZN_FastNoiseLiteGradient" id="ZN_FastNoiseLiteGradient_w6u70"]
+period = 32.0001
+amplitude = 16.0001
+fractal_type = 1
+
+[resource]
+graph_data = {
+"connections": [[108, 0, 110, 1], [100, 0, 103, 0], [100, 0, 103, 1], [101, 0, 99, 1], [102, 0, 95, 0], [103, 0, 101, 0], [105, 0, 117, 0], [105, 0, 147, 0], [107, 0, 128, 0], [107, 0, 134, 0], [107, 0, 135, 0], [109, 0, 128, 1], [109, 0, 134, 1], [109, 0, 135, 1], [110, 0, 142, 0], [111, 0, 100, 1], [111, 0, 115, 1], [111, 0, 140, 1], [111, 0, 112, 1], [112, 0, 97, 0], [112, 0, 104, 0], [112, 0, 113, 0], [113, 0, 114, 0], [113, 0, 126, 0], [115, 0, 116, 0], [115, 0, 120, 1], [117, 0, 110, 0], [118, 0, 99, 0], [118, 0, 119, 0], [120, 0, 121, 0], [120, 0, 124, 0], [122, 0, 117, 1], [124, 0, 118, 0], [124, 0, 125, 0], [126, 0, 131, 0], [127, 0, 98, 0], [128, 0, 105, 1], [129, 0, 132, 0], [130, 0, 133, 0], [131, 0, 105, 0], [132, 0, 122, 1], [132, 0, 145, 0], [133, 0, 122, 0], [133, 0, 146, 0], [134, 0, 133, 1], [135, 0, 132, 1], [139, 0, 141, 1], [140, 0, 139, 0], [140, 1, 139, 1], [141, 0, 102, 0], [141, 0, 127, 0], [145, 0, 138, 0], [146, 0, 137, 0], [147, 0, 136, 0], [95, 0, 124, 1], [96, 0, 100, 0], [96, 0, 112, 0], [96, 0, 115, 0], [96, 0, 140, 0], [97, 0, 120, 0], [97, 0, 141, 0], [98, 0, 129, 0], [99, 0, 130, 0]],
+"nodes": {
+"100": {
+"auto_connect": true,
+"gui_position": Vector2(161.009, 191.954),
+"noise": SubResource("FastNoise2_nwah0"),
+"type": "FastNoise2_2D"
+},
+"101": {
+"gui_position": Vector2(1320, 200),
+"max0": 1.0,
+"max1": 128.0,
+"min0": -1.0,
+"min1": 0.0,
+"type": "Remap"
+},
+"102": {
+"curve": SubResource("Curve_o8ebh"),
+"gui_position": Vector2(741.009, 271.954),
+"type": "Curve"
+},
+"103": {
+"gui_position": Vector2(381.009, 191.954),
+"type": "Multiply"
+},
+"104": {
+"fraction_period": 100.0,
+"gui_position": Vector2(161.009, -528.046),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"105": {
+"gui_position": Vector2(2081.01, -108.046),
+"type": "Multiply"
+},
+"107": {
+"gui_position": Vector2(1581.01, 451.954),
+"type": "InputX"
+},
+"108": {
+"gui_position": Vector2(2641.01, 111.954),
+"type": "InputY"
+},
+"109": {
+"gui_position": Vector2(1581.01, 551.954),
+"type": "InputZ"
+},
+"110": {
+"gui_position": Vector2(2781.01, -28.0462),
+"type": "Subtract"
+},
+"111": {
+"gui_position": Vector2(-78.9906, 151.954),
+"type": "InputZ"
+},
+"112": {
+"auto_connect": true,
+"gui_position": Vector2(141.009, -308.046),
+"name": &"Continents",
+"noise": SubResource("FastNoise2_7k4re"),
+"type": "FastNoise2_2D"
+},
+"113": {
+"curve": SubResource("Curve_xudg0"),
+"gui_position": Vector2(441.009, -308.046),
+"type": "Curve"
+},
+"114": {
+"fraction_period": 100.0,
+"gui_position": Vector2(421.009, -528.046),
+"max_value": 64.0,
+"min_value": -32.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"115": {
+"auto_connect": true,
+"gui_position": Vector2(141.009, 31.9538),
+"name": &"Mountains",
+"noise": SubResource("FastNoise2_y4s0l"),
+"type": "FastNoise2_2D"
+},
+"116": {
+"fraction_period": 100.0,
+"gui_position": Vector2(161.009, -188.046),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"117": {
+"gui_position": Vector2(2601.01, -28.0462),
+"type": "Add"
+},
+"118": {
+"curve": SubResource("Curve_neh5u"),
+"gui_position": Vector2(1301.01, 31.9538),
+"type": "Curve"
+},
+"119": {
+"fraction_period": 100.0,
+"gui_position": Vector2(1281.01, -188.046),
+"max_value": 64.0,
+"min_value": 0.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"120": {
+"gui_position": Vector2(721.009, 31.9538),
+"type": "Multiply"
+},
+"121": {
+"fraction_period": 100.0,
+"gui_position": Vector2(701.009, -188.046),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"122": {
+"gui_position": Vector2(2421.01, 91.9538),
+"type": "Add"
+},
+"124": {
+"gui_position": Vector2(1121.01, 31.9538),
+"type": "Multiply"
+},
+"125": {
+"fraction_period": 100.0,
+"gui_position": Vector2(1101.01, -188.046),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"126": {
+"gui_position": Vector2(1401.01, -308.046),
+"type": "Relay"
+},
+"127": {
+"curve": SubResource("Curve_i2gxf"),
+"gui_position": Vector2(741.009, 371.954),
+"type": "Curve"
+},
+"128": {
+"auto_connect": true,
+"gui_position": Vector2(1801.01, 271.954),
+"noise": SubResource("FastNoise2_0qbr0"),
+"type": "FastNoise2_2D"
+},
+"129": {
+"gui_position": Vector2(1801.01, 171.954),
+"type": "Relay"
+},
+"130": {
+"gui_position": Vector2(1801.01, 31.9538),
+"type": "Relay"
+},
+"131": {
+"gui_position": Vector2(1801.01, -108.046),
+"type": "Relay"
+},
+"132": {
+"gui_position": Vector2(2081.01, 171.954),
+"type": "Multiply"
+},
+"133": {
+"gui_position": Vector2(2081.01, 31.9538),
+"type": "Multiply"
+},
+"134": {
+"auto_connect": true,
+"gui_position": Vector2(1801.01, 411.954),
+"noise": SubResource("FastNoise2_dsv4n"),
+"type": "FastNoise2_2D"
+},
+"135": {
+"auto_connect": true,
+"gui_position": Vector2(1801.01, 551.954),
+"noise": SubResource("FastNoise2_8por2"),
+"type": "FastNoise2_2D"
+},
+"136": {
+"gui_position": Vector2(2600, 260),
+"name": &"continents",
+"type": "CustomOutput"
+},
+"137": {
+"gui_position": Vector2(2620, 360),
+"name": &"mountains",
+"type": "CustomOutput"
+},
+"138": {
+"gui_position": Vector2(2620, 460),
+"name": &"rivers",
+"type": "CustomOutput"
+},
+"139": {
+"auto_connect": true,
+"gui_position": Vector2(341.009, 371.954),
+"noise": SubResource("FastNoise2_vm0vr"),
+"type": "FastNoise2_2D"
+},
+"140": {
+"auto_connect": true,
+"gui_position": Vector2(141.009, 371.954),
+"noise": SubResource("ZN_FastNoiseLiteGradient_w6u70"),
+"type": "FastNoiseGradient2D"
+},
+"141": {
+"gui_position": Vector2(581.009, 351.954),
+"type": "Multiply"
+},
+"142": {
+"gui_position": Vector2(2940, -20),
+"name": &"voxelDepth",
+"type": "CustomOutput"
+},
+"145": {
+"gui_position": Vector2(2440, 460),
+"max0": 0.0,
+"max1": 1.0,
+"min0": -32.0,
+"min1": -1.0,
+"type": "Remap"
+},
+"146": {
+"gui_position": Vector2(2440, 360),
+"max0": 128.0,
+"max1": 1.0,
+"min0": 0.0,
+"min1": -1.0,
+"type": "Remap"
+},
+"147": {
+"gui_position": Vector2(2440, 260),
+"max0": 32.0,
+"max1": 1.0,
+"min0": -32.0,
+"min1": -1.0,
+"type": "Remap"
+},
+"95": {
+"edge0": -1.0,
+"edge1": 0.0,
+"gui_position": Vector2(921.009, 271.954),
+"type": "Smoothstep"
+},
+"96": {
+"gui_position": Vector2(-78.9906, -68.0462),
+"type": "InputX"
+},
+"97": {
+"edge0": -0.5,
+"edge1": 0.0,
+"gui_position": Vector2(421.009, -148.046),
+"type": "Smoothstep"
+},
+"98": {
+"b": 32.0,
+"gui_position": Vector2(1101.01, 331.954),
+"type": "Multiply"
+},
+"99": {
+"gui_position": Vector2(1541.01, 31.9538),
+"type": "Multiply"
+}
+},
+"version": 2
+}
+input_definitions = [["x", "InputX", 0], ["y", "InputY", 0], ["z", "InputZ", 0]]
+output_definitions = [["continents", "CustomOutput", 0], ["mountains", "CustomOutput", 0], ["rivers", "CustomOutput", 0], ["voxelDepth", "CustomOutput", 0]]

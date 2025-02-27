@@ -27,10 +27,10 @@ public partial class PlayerInteraction : Node
             if (pointerResult != null)
             {
                 var placePos = pointerResult.PreviousPosition;
-                player.VoxelTool.SetVoxel(placePos, FactoryData.BlockLibrary.GetSingleAttributeId(
+                player.VoxelTool.SetVoxel(FactoryData.BlockLibrary.GetSingleAttributeId(
                     "dirt_slab",
                     SlabAttribute.Top
-                ));
+                ), placePos);
             }
         }
 
@@ -39,7 +39,7 @@ public partial class PlayerInteraction : Node
             if (pointerResult != null)
             {
                 var pos = pointerResult.Position;
-                player.VoxelTool.SetVoxel(pos, FactoryData.BlockLibrary.GetDefaultId("air"));
+                player.VoxelTool.SetVoxel(FactoryData.BlockLibrary.GetDefaultId("air"), pos);
             }
         }
     }

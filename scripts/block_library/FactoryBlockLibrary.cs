@@ -20,6 +20,11 @@ public partial class FactoryBlockLibrary : VoxelBlockyTypeLibrary
         return (ulong) GetModelIndexSingleAttribute(typeName, value);
     }
     
+    public ulong GetModelWithAttributes(StringName typeName, Dictionary<string, int> value)
+    {
+        return (ulong) GetModelIndexWithAttributes(typeName, (Dictionary) value);
+    }
+    
     public BlockData GetBlockDataFromId(int id)
     {
         return new BlockData(GetTypeNameAndAttributesFromModelIndex(id));

@@ -1,0 +1,62 @@
+[gd_resource type="VoxelGeneratorGraph" load_steps=3 format=3 uid="uid://lhasu25sogvb"]
+
+[ext_resource type="VoxelGraphFunction" uid="uid://c17dy5pp4w7a8" path="res://assets/worldgen/land_func.tres" id="1_pxllf"]
+[ext_resource type="VoxelGraphFunction" uid="uid://c37n66rkb845i" path="res://assets/worldgen/paint_func.tres" id="1_ulhhg"]
+
+[resource]
+graph_data = {
+"connections": [[1, 0, 6, 0], [2, 0, 6, 1], [12, 0, 15, 0], [13, 0, 15, 1], [6, 0, 15, 3], [6, 1, 15, 4], [6, 2, 15, 5], [6, 3, 15, 6], [14, 0, 15, 2], [3, 0, 6, 2], [15, 0, 7, 0]],
+"nodes": {
+"1": {
+"gui_position": Vector2(440, 50),
+"type": "InputX"
+},
+"12": {
+"gui_position": Vector2(700, -220),
+"type": "InputX"
+},
+"13": {
+"gui_position": Vector2(700, -120),
+"type": "InputY"
+},
+"14": {
+"gui_position": Vector2(700, -20),
+"type": "InputZ"
+},
+"15": {
+"_function": ExtResource("1_ulhhg"),
+"auto_connect": true,
+"continent": 0.0,
+"gui_position": Vector2(900, 0),
+"mountains": 0.0,
+"rivers": 0.0,
+"type": "Function",
+"voxelDepth": 0.0,
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
+},
+"2": {
+"gui_position": Vector2(440, 150),
+"type": "InputY"
+},
+"3": {
+"gui_position": Vector2(440, 250),
+"type": "InputZ"
+},
+"6": {
+"_function": ExtResource("1_pxllf"),
+"auto_connect": true,
+"gui_position": Vector2(640, 80),
+"type": "Function",
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
+},
+"7": {
+"gui_position": Vector2(1180, 0),
+"type": "OutputType"
+}
+},
+"version": 2
+}

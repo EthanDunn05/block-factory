@@ -1,0 +1,27 @@
+[gd_resource type="VoxelBlockyType" load_steps=6 format=3 uid="uid://dlcjt38yad2ru"]
+
+[ext_resource type="ArrayMesh" uid="uid://dask71ili0vc" path="res://assets/blocks/models/flower.obj" id="1_dx3u8"]
+[ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_drhu4"]
+[ext_resource type="Texture2D" uid="uid://bmveppluyr0o6" path="res://assets/blocks/models/flower.png" id="3_uiuhq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx3u8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_uiuhq")
+texture_filter = 2
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_54y4x"]
+collision_aabbs = Array[AABB]([AABB(0.4, 0, 0.4, 0.2, 0.5, 0.2)])
+collision_mask = 2
+material_override_0 = SubResource("StandardMaterial3D_dx3u8")
+collision_enabled_0 = false
+mesh = ExtResource("1_dx3u8")
+script = ExtResource("2_drhu4")
+texture = ExtResource("3_uiuhq")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[resource]
+resource_name = "flower"
+unique_name = &"flower"
+base_model = SubResource("VoxelBlockyModelMesh_54y4x")

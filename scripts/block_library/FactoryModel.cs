@@ -9,6 +9,9 @@ public partial class FactoryModel : VoxelBlockyModelMesh
     
     public void SetData()
     {
+        SetMeshCollisionEnabled(0, false);
+
+        if (GetMaterialOverride(0) != null) return;
         var material = (ShaderMaterial) FactoryData.BlockMaterial.Duplicate();
         material.SetShaderParameter("texture_albedo", texture);
         material.SetShaderParameter("albedo_texture_size", texture.GetSize());

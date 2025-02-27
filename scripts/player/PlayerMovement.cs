@@ -38,6 +38,7 @@ public partial class PlayerMovement : Node
 		
 		boxMover.SetMaxStepHeight(1f); // Full block step height :)
 		boxMover.SetStepClimbingEnabled(true);
+		boxMover.SetCollisionMask(1);
 	}
 
 	public override void _UnhandledInput(InputEvent evt)
@@ -79,7 +80,7 @@ public partial class PlayerMovement : Node
 
 		if (onFloor)
 		{
-			gravVel = Vector3.Zero;
+			gravVel = gravity * Vector3.Down * (float) delta;
 
 			if (jumpHeld)
 			{
