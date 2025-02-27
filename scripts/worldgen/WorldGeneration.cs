@@ -89,17 +89,18 @@ public partial class WorldGeneration : VoxelGeneratorScript
 				new Vector3I(x, 0, z),
 				new Vector3I(x + 1, heightInBlock, z + 1));
 
-			if (slope < 0.9f)
+			// Add dirt
+			if (slope < 0.9f && heightY < 48 + rng.RandiRange(-2, 2))
 			{
 				var dirtStart = heightInBlock;
-				var dirtEnd = ClampInBufferY(height - rng.RandiRange(2, 4), outBuffer);
+				var dirtEnd = ClampInBufferY(height - rng.RandiRange(2, 3), outBuffer);
 				outBuffer.FillArea(lib.GetDefaultId("dirt"),
 					new Vector3I(x, dirtStart, z),
 					new Vector3I(x + 1, dirtEnd, z + 1));
 
 				// Don't put grass underwater
 				// Or on mountains
-				if (heightY >= 0 && heightY < 64 + rng.RandiRange(-2, 2))
+				if (heightY >= 1)
 				{
 					var grassStart = heightInBlock;
 					var grassEnd = ClampInBufferY(height - 1, outBuffer);
@@ -122,6 +123,16 @@ public partial class WorldGeneration : VoxelGeneratorScript
 							new Vector3I(x + 1, decoEnd, z + 1));
 					}
 				}
+			}
+			
+			// Sand
+			if (heightY <= 0)
+			{
+				var sandStart = heightInBlock;
+				var sandEnd = ClampInBufferY(height - 6, outBuffer);
+				outBuffer.FillArea(lib.GetDefaultId("sand"),
+					new Vector3I(x, sandStart, z),
+					new Vector3I(x + 1, sandEnd, z + 1));
 			}
 		}
 	}

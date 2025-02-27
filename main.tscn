@@ -1,16 +1,18 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckigcpf276hoe"]
 
 [ext_resource type="VoxelGeneratorScript" uid="uid://bd022sh2wr20o" path="res://assets/worldgen/worldgen.tres" id="1_1bvp3"]
-[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ltivypoh4bxr" path="res://assets/block_library.tres" id="2_1bvp3"]
+[ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ltivypoh4bxr" path="res://assets/blocks/block_library.tres" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bb4m17igxq246" path="res://player.tscn" id="3_7cye5"]
 
 [sub_resource type="VoxelMesherBlocky" id="VoxelMesherBlocky_7a08w"]
 library = ExtResource("2_1bvp3")
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_h2yge"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
+sky_top_color = Color(0.468646, 0.624991, 0.959843, 1)
+sky_horizon_color = Color(0.68873, 0.826527, 0.963095, 1)
 
 [sub_resource type="Sky" id="Sky_84yvt"]
-sky_material = SubResource("PhysicalSkyMaterial_h2yge")
+sky_material = SubResource("ProceduralSkyMaterial_h2yge")
 
 [sub_resource type="Environment" id="Environment_cdrt6"]
 background_mode = 2
@@ -50,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 64, 0)
 Terrain = NodePath("../VoxelTerrain")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.61672, 0.787183, 0, -0.787183, 0.61672, 0, 85.2331, 0)
+transform = Transform3D(1, 0, 0, 0, 0.43358, 0.901115, 0, -0.901115, 0.43358, 0, 85.2331, 0)
 light_energy = 1.1
 shadow_enabled = true
 

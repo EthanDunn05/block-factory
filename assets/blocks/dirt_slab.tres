@@ -1,8 +1,8 @@
 [gd_resource type="VoxelBlockyType" load_steps=13 format=3 uid="uid://5x84o4tulsau"]
 
-[ext_resource type="ArrayMesh" uid="uid://df3i22eebfdcy" path="res://assets/blocks/models/slab.obj" id="1_odcku"]
+[ext_resource type="ArrayMesh" uid="uid://df3i22eebfdcy" path="res://assets/blocks/_common/slab.obj" id="1_odcku"]
 [ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_5jc8y"]
-[ext_resource type="Texture2D" uid="uid://bamknw2i0ndha" path="res://assets/blocks/textures/dirt.png" id="3_8bum2"]
+[ext_resource type="Texture2D" uid="uid://bamknw2i0ndha" path="res://assets/blocks/dirt/dirt.png" id="3_8bum2"]
 [ext_resource type="Script" uid="uid://daa24wir6wpcy" path="res://scripts/blocks/attributes/SlabAttribute.cs" id="4_5jc8y"]
 
 [sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_8bum2"]

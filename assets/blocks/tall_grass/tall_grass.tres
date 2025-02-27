@@ -1,0 +1,19 @@
+[gd_resource type="VoxelBlockyType" load_steps=5 format=3 uid="uid://du2kxedu2ca28"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2l04yq01todu" path="res://assets/blocks/tall_grass/tall_grass.obj" id="1_kjgp5"]
+[ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_q2qtb"]
+[ext_resource type="Texture2D" uid="uid://dpjuf7rhd1c2v" path="res://assets/blocks/tall_grass/tall_grass.png" id="3_arrki"]
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_xgjh4"]
+collision_aabbs = Array[AABB]([AABB(0.1, 0, 0.1, 0.8, 1.25, 0.8)])
+collision_mask = 2
+collision_enabled_0 = false
+mesh = ExtResource("1_kjgp5")
+script = ExtResource("2_q2qtb")
+texture = ExtResource("3_arrki")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[resource]
+resource_name = "tall_grass"
+unique_name = &"tall_grass"
+base_model = SubResource("VoxelBlockyModelMesh_xgjh4")

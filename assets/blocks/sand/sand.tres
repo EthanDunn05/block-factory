@@ -1,0 +1,18 @@
+[gd_resource type="VoxelBlockyType" load_steps=5 format=3 uid="uid://cha50n3yu4rm4"]
+
+[ext_resource type="ArrayMesh" uid="uid://c67frqe1uqdq1" path="res://assets/blocks/_common/block_single.obj" id="1_r4wqw"]
+[ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_l5m8e"]
+[ext_resource type="Texture2D" uid="uid://cexy5wplp67bj" path="res://assets/blocks/sand/sand.png" id="3_ajq1r"]
+
+[sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_t5ng7"]
+collision_aabbs = Array[AABB]([AABB(0, 0, 0, 1, 1, 1)])
+collision_enabled_0 = true
+mesh = ExtResource("1_r4wqw")
+script = ExtResource("2_l5m8e")
+texture = ExtResource("3_ajq1r")
+metadata/_custom_type_script = "uid://dqt8kljgwk1on"
+
+[resource]
+resource_name = "sand"
+unique_name = &"sand"
+base_model = SubResource("VoxelBlockyModelMesh_t5ng7")

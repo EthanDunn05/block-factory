@@ -1,0 +1,19 @@
+[gd_resource type="VoxelBlockyTypeLibrary" script_class="FactoryBlockLibrary" load_steps=12 format=3 uid="uid://ltivypoh4bxr"]
+
+[ext_resource type="Script" uid="uid://b058w0ux52p3v" path="res://scripts/block_library/FactoryBlockLibrary.cs" id="1_wy13w"]
+[ext_resource type="VoxelBlockyType" uid="uid://c6vb5c4kmvivd" path="res://assets/blocks/air.tres" id="2_sblbu"]
+[ext_resource type="VoxelBlockyType" uid="uid://bm3g1smxlstj" path="res://assets/blocks/dirt/dirt.tres" id="3_ejlay"]
+[ext_resource type="VoxelBlockyType" uid="uid://o1u0maeau71r" path="res://assets/blocks/grass/grass.tres" id="4_mpmun"]
+[ext_resource type="VoxelBlockyType" uid="uid://5x84o4tulsau" path="res://assets/blocks/dirt_slab.tres" id="5_ejlay"]
+[ext_resource type="VoxelBlockyType" uid="uid://vv6djrjplw8o" path="res://assets/blocks/short_grass/short_grass.tres" id="6_mpmun"]
+[ext_resource type="VoxelBlockyType" uid="uid://uo855hmmehyo" path="res://assets/blocks/stone/stone.tres" id="7_2a3tv"]
+[ext_resource type="VoxelBlockyType" uid="uid://du2kxedu2ca28" path="res://assets/blocks/tall_grass/tall_grass.tres" id="8_tvxfl"]
+[ext_resource type="VoxelBlockyType" uid="uid://dlcjt38yad2ru" path="res://assets/blocks/flower/flower.tres" id="9_h3uoa"]
+[ext_resource type="VoxelBlockyType" uid="uid://cwpibrctdbrn6" path="res://assets/blocks/water.tres" id="10_uq408"]
+[ext_resource type="VoxelBlockyType" uid="uid://cha50n3yu4rm4" path="res://assets/blocks/sand/sand.tres" id="11_sgxxu"]
+
+[resource]
+types = Array[VoxelBlockyType]([ExtResource("2_sblbu"), ExtResource("7_2a3tv"), ExtResource("3_ejlay"), ExtResource("4_mpmun"), ExtResource("5_ejlay"), ExtResource("6_mpmun"), ExtResource("8_tvxfl"), ExtResource("9_h3uoa"), ExtResource("10_uq408"), ExtResource("11_sgxxu")])
+_id_map_data = PackedStringArray("air", "dirt", "grass", "dirt_slab[slab=0]", "dirt_slab[slab=1]", "dirt_slab[slab=2]", "dirt_slab[slab=3]", "dirt_slab[slab=4]", "dirt_slab[slab=5]", "short_grass", "stone", "tall_grass", "flower", "short_grass[lod=0]", "short_grass[lod=1]", "water", "sand")
+script = ExtResource("1_wy13w")
+metadata/_custom_type_script = "uid://b058w0ux52p3v"
