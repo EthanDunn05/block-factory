@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb4m17igxq246"]
+[gd_scene load_steps=7 format=3 uid="uid://bb4m17igxq246"]
 
 [ext_resource type="Script" uid="uid://bxlgnpr477yg0" path="res://scripts/player/Player.cs" id="1_ef0uo"]
 [ext_resource type="Script" uid="uid://ditraopx5qt8l" path="res://scripts/player/PlayerMovement.cs" id="2_cmgb4"]
+[ext_resource type="PackedScene" uid="uid://cvv0gfkkssf40" path="res://assets/player/player_hud.tscn" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://bpd8okxu6dgr7" path="res://scripts/player/PlayerInteraction.cs" id="3_i3pqv"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5cmqv"]
+[sub_resource type="BoxMesh" id="BoxMesh_sweqy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
 
 [node name="Player" type="Node3D"]
 physics_interpolation_mode = 1
 script = ExtResource("1_ef0uo")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.74695, 0, 0, 0, 0.94439, 0, 0, 0, 0.74695, 0, 0.94973, 0)
-mesh = SubResource("CapsuleMesh_5cmqv")
+transform = Transform3D(0.746271, 0, 0, 0, 1.87223, 0, 0, 0, 0.746271, 0, 0.94973, 0)
+mesh = SubResource("BoxMesh_sweqy")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54667, 0)
@@ -21,6 +24,8 @@ fov = 90.0
 
 [node name="VoxelViewer" type="VoxelViewer" parent="Camera"]
 view_distance = 192
+
+[node name="PlayerHud" parent="." instance=ExtResource("2_hqtel")]
 
 [node name="Movement" type="Node" parent="." node_paths=PackedStringArray("Camera")]
 script = ExtResource("2_cmgb4")
@@ -35,3 +40,4 @@ terminalVel = 500.0
 [node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("3_i3pqv")
 camera = NodePath("../Camera")
+cursorMaterial = SubResource("StandardMaterial3D_hqtel")

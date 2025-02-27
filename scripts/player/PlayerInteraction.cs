@@ -11,13 +11,20 @@ public partial class PlayerInteraction : Node
     private Player player;
 
     [Export] private Camera3D camera;
-
+    [Export] private Material cursorMaterial;
+    private Cursor cursor;
 
     private VoxelRaycastResult? pointerResult;
 
     public override void _Ready()
     {
         player = GetParent<Player>();
+
+        cursor = new Cursor();
+        cursor.MaterialOverride = cursorMaterial;
+        cursor.SetScale(Vector3.One * 1.001f);
+        player.Terrain.AddChild(cursor);
+        
     }
 
     public override void _Process(double delta)
@@ -47,6 +54,8 @@ public partial class PlayerInteraction : Node
     public override void _PhysicsProcess(double delta)
     {
         pointerResult = CastPointer(); // Only once per physics update :)
+        
+        cursor.UpdateHovered(pointerResult, player);
     }
 
     private VoxelRaycastResult? CastPointer()
