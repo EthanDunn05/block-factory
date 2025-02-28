@@ -25,9 +25,15 @@ public partial class FactoryBlockLibrary : VoxelBlockyTypeLibrary
         return (ulong) GetModelIndexWithAttributes(typeName, (Dictionary) value);
     }
     
-    public BlockData GetBlockDataFromId(int id)
+    public VoxelData GetVoxelDataFromId(int id)
     {
-        return new BlockData(GetTypeNameAndAttributesFromModelIndex(id));
+        return new VoxelData(GetTypeNameAndAttributesFromModelIndex(id));
+    }
+
+    public VoxelBlockyType GetTypeFromId(int id)
+    {
+        var data = GetVoxelDataFromId(id);
+        return GetTypeFromName(data.Name);
     }
 
     public VariantData[] GetVariants(StringName typeName)
@@ -41,13 +47,13 @@ public partial class FactoryBlockLibrary : VoxelBlockyTypeLibrary
         return data.Select(v => new VariantData(v)).ToArray();
     }
 
-    public struct BlockData
+    public struct VoxelData
     {
         public string Name;
         public Dictionary<string, int> Attributes = new();
         
         // Block structure: [name, {attributeDict}]
-        public BlockData(Array block)
+        public VoxelData(Array block)
         {
             Name = block[0].AsString();
             Attributes = block[1].AsGodotDictionary<string, int>();

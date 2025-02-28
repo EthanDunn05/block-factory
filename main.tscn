@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckigcpf276hoe"]
+[gd_scene load_steps=11 format=3 uid="uid://ckigcpf276hoe"]
 
 [ext_resource type="VoxelGeneratorScript" uid="uid://bd022sh2wr20o" path="res://assets/worldgen/worldgen.tres" id="1_1bvp3"]
 [ext_resource type="VoxelBlockyTypeLibrary" uid="uid://ltivypoh4bxr" path="res://assets/blocks/block_library.tres" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://cgicoby5uyjod" path="res://scripts/FactoryTerrain.cs" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bb4m17igxq246" path="res://player.tscn" id="3_7cye5"]
 
 [sub_resource type="VoxelMesherBlocky" id="VoxelMesherBlocky_7a08w"]
@@ -46,6 +47,7 @@ max_view_distance = 256
 generate_collisions = false
 area_edit_notification_enabled = true
 run_stream_in_editor = false
+script = ExtResource("3_1bvp3")
 
 [node name="Player" parent="." node_paths=PackedStringArray("Terrain") instance=ExtResource("3_7cye5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 64, 0)

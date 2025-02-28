@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using BlockFactory.scripts.block_library;
+using BlockFactory.scripts.blocks;
 using BlockFactory.scripts.blocks.attributes;
 using Godot;
 using Godot.Collections;
@@ -29,24 +30,52 @@ public partial class PlayerInteraction : Node
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("place"))
+        if (Input.IsActionJustPressed("place") && pointerResult != null)
         {
-            if (pointerResult != null)
+            var pos = (Vector3I) (pointerResult.Position + pointerResult.Normal);
+                
+            var id = player.TerrainTool.GetVoxelId(pos);
+            var type = FactoryData.BlockLibrary.GetTypeFromId((int) id);
+
+            var clickResult = InteractionResult.Continue;
+            if (type is BaseVoxelType clicking)
             {
-                var placePos = pointerResult.PreviousPosition;
-                player.VoxelTool.SetVoxel(placePos, FactoryData.BlockLibrary.GetSingleAttributeId(
-                    "dirt_slab",
-                    SlabAttribute.Top
-                ));
+                clickResult = clicking.OnRightClick(player, pointerResult.Position, pointerResult.Normal, player.Terrain);
+            }
+
+            if (clickResult == InteractionResult.Continue)
+            {
+                player.TerrainTool.SetVoxel(pos, FactoryData.BlockLibrary.GetDefaultId("dirt_slab"));
+                var placedType = player.TerrainTool.GetVoxelType(pos);
+                
+                if (placedType is BaseVoxelType vt)
+                {
+                    vt.OnPlaced(player, pos, pointerResult.Normal, player.Terrain);
+                }
             }
         }
 
-        if (Input.IsActionJustPressed("break"))
+        if (Input.IsActionJustPressed("break") && pointerResult != null)
         {
-            if (pointerResult != null)
+            var pos = pointerResult.Position;
+                
+            var id = player.TerrainTool.GetVoxelId(pos);
+            var type = FactoryData.BlockLibrary.GetTypeFromId((int) id);
+
+            var clickResult = InteractionResult.Continue;
+            if (type is BaseVoxelType clicking)
             {
-                var pos = pointerResult.Position;
-                player.VoxelTool.SetVoxel(pos, FactoryData.BlockLibrary.GetDefaultId("air"));
+                clickResult = clicking.OnLeftClick(player, pointerResult.Position, pointerResult.Normal, player.Terrain);
+            }
+                
+            if (clickResult == InteractionResult.Continue)
+            {
+                if (type is BaseVoxelType vt)
+                {
+                    vt.OnBroken(player, pos, player.Terrain);
+                }
+
+                player.TerrainTool.SetVoxel(pos, FactoryData.BlockLibrary.GetDefaultId("air"));
             }
         }
     }
@@ -60,7 +89,7 @@ public partial class PlayerInteraction : Node
 
     private VoxelRaycastResult? CastPointer()
     {
-        var cast = player.VoxelTool.Raycast(camera.GlobalPosition, camera.GlobalBasis * Vector3.Forward, 5f);
+        var cast = player.TerrainTool.Raycast(camera.GlobalPosition, camera.GlobalBasis * Vector3.Forward, 5f);
         return cast;
     }
 }

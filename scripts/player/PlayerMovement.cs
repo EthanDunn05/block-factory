@@ -69,7 +69,7 @@ public partial class PlayerMovement : Node
 	public override void _Process(double delta)
 	{
 		if (!HasNode(player.Terrain.GetPath())) return;
-		if (!player.VoxelTool.IsAreaEditable(new Aabb(collision.Position + player.Position, collision.Size))) return;
+		if (!player.TerrainTool.IsAreaEditable(new Aabb(collision.Position + player.Position, collision.Size))) return;
 		
 		var onFloor = CheckOnFloor();
 		
@@ -117,7 +117,7 @@ public partial class PlayerMovement : Node
 
 	private bool CastFloor(Vector2 offset)
 	{
-		var cast = player.VoxelTool.Raycast(player.GlobalPosition + new Vector3(offset.X, 0f, offset.Y), Vector3.Down, 0.1f);
+		var cast = player.TerrainTool.Raycast(player.GlobalPosition + new Vector3(offset.X, 0f, offset.Y), Vector3.Down, 0.1f);
 		return cast != null && cast.Distance < 0.01f;
 	}
 }

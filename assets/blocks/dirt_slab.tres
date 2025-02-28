@@ -1,9 +1,10 @@
-[gd_resource type="VoxelBlockyType" load_steps=13 format=3 uid="uid://5x84o4tulsau"]
+[gd_resource type="VoxelBlockyType" load_steps=14 format=3 uid="uid://5x84o4tulsau"]
 
 [ext_resource type="ArrayMesh" uid="uid://df3i22eebfdcy" path="res://assets/blocks/_common/slab.obj" id="1_odcku"]
 [ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_5jc8y"]
 [ext_resource type="Texture2D" uid="uid://bamknw2i0ndha" path="res://assets/blocks/dirt/dirt.png" id="3_8bum2"]
 [ext_resource type="Script" uid="uid://daa24wir6wpcy" path="res://scripts/blocks/attributes/SlabAttribute.cs" id="4_5jc8y"]
+[ext_resource type="Script" uid="uid://csgtjocd02sj6" path="res://scripts/blocks/SlabVoxelType.cs" id="5_8bum2"]
 
 [sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_8bum2"]
 collision_aabbs = Array[AABB]([AABB(0, 0, 0, 1, 0.5, 1)])
@@ -23,10 +24,10 @@ texture = ExtResource("3_8bum2")
 metadata/_custom_type_script = "uid://dqt8kljgwk1on"
 
 [sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_5jc8y"]
-collision_aabbs = Array[AABB]([AABB(0.5, 0, 0, 0.5, 1, 1)])
+collision_aabbs = Array[AABB]([AABB(0, 0, 0, 1, 1, 0.5)])
 collision_enabled_0 = true
 mesh = ExtResource("1_odcku")
-mesh_ortho_rotation_index = 11
+mesh_ortho_rotation_index = 17
 script = ExtResource("2_5jc8y")
 texture = ExtResource("3_8bum2")
 metadata/_custom_type_script = "uid://dqt8kljgwk1on"
@@ -41,19 +42,19 @@ texture = ExtResource("3_8bum2")
 metadata/_custom_type_script = "uid://dqt8kljgwk1on"
 
 [sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_lyn6b"]
-collision_aabbs = Array[AABB]([AABB(0, 0, 0, 0.5, 1, 1)])
+collision_aabbs = Array[AABB]([AABB(0.5, 0, 0, 0.5, 1, 1)])
 collision_enabled_0 = true
 mesh = ExtResource("1_odcku")
-mesh_ortho_rotation_index = 5
+mesh_ortho_rotation_index = 7
 script = ExtResource("2_5jc8y")
 texture = ExtResource("3_8bum2")
 metadata/_custom_type_script = "uid://dqt8kljgwk1on"
 
 [sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_0q4gq"]
-collision_aabbs = Array[AABB]([AABB(0, 0, 0, 1, 1, 0.5)])
+collision_aabbs = Array[AABB]([AABB(0, 0, 0, 0.5, 1, 1)])
 collision_enabled_0 = true
 mesh = ExtResource("1_odcku")
-mesh_ortho_rotation_index = 12
+mesh_ortho_rotation_index = 13
 script = ExtResource("2_5jc8y")
 texture = ExtResource("3_8bum2")
 metadata/_custom_type_script = "uid://dqt8kljgwk1on"
@@ -83,3 +84,4 @@ unique_name = &"dirt_slab"
 base_model = SubResource("VoxelBlockyModelMesh_vjuis")
 attributes = Array[VoxelBlockyAttribute]([SubResource("VoxelBlockyAttributeCustom_ckfhv")])
 _variant_models_data = [[[&"slab", 0], SubResource("VoxelBlockyModelMesh_8bum2")], [[&"slab", 1], SubResource("VoxelBlockyModelMesh_q4vqh")], [[&"slab", 2], SubResource("VoxelBlockyModelMesh_5jc8y")], [[&"slab", 3], SubResource("VoxelBlockyModelMesh_ckfhv")], [[&"slab", 4], SubResource("VoxelBlockyModelMesh_lyn6b")], [[&"slab", 5], SubResource("VoxelBlockyModelMesh_0q4gq")]]
+script = ExtResource("5_8bum2")

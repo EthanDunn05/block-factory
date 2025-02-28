@@ -4,14 +4,14 @@ namespace BlockFactory.scripts.player;
 
 public partial class Player : Node3D
 {
-	[Export] public VoxelTerrain Terrain;
-	public VoxelToolTerrain VoxelTool;
+	[Export] public FactoryTerrain Terrain;
+	public FactoryTerrainTool TerrainTool;
 
 	private bool spawned = false;
 
 	public override void _Ready()
 	{
-		VoxelTool = (VoxelToolTerrain) Terrain.GetVoxelTool();
+		TerrainTool = new FactoryTerrainTool(Terrain);
 	}
 
 	public override void _PhysicsProcess(double delta)

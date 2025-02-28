@@ -15,8 +15,8 @@ public partial class Cursor : MeshInstance3D
             Position = pointerCast.Position;
             
             // Check out this labyrinth of data
-            var hoveredId = player.VoxelTool.GetVoxel(pointerCast.Position);
-            var hoveredData = FactoryData.BlockLibrary.GetBlockDataFromId((int) hoveredId);
+            var hoveredId = player.TerrainTool.GetVoxelId(pointerCast.Position);
+            var hoveredData = FactoryData.BlockLibrary.GetVoxelDataFromId((int) hoveredId);
             var hoveredType = FactoryData.BlockLibrary.GetTypeFromName(hoveredData.Name);
             var variants = FactoryData.BlockLibrary.GetVariants(hoveredData.Name);
 

@@ -1,8 +1,9 @@
-[gd_resource type="VoxelBlockyType" load_steps=5 format=3 uid="uid://vv6djrjplw8o"]
+[gd_resource type="VoxelBlockyType" load_steps=6 format=3 uid="uid://vv6djrjplw8o"]
 
 [ext_resource type="ArrayMesh" uid="uid://cj1tu8u6qv6jw" path="res://assets/blocks/short_grass/short_grass.obj" id="1_linul"]
 [ext_resource type="Script" uid="uid://dqt8kljgwk1on" path="res://scripts/block_library/FactoryModel.cs" id="2_6p01j"]
 [ext_resource type="Texture2D" uid="uid://syc8e816lh3r" path="res://assets/blocks/short_grass/short_grass.png" id="3_h072e"]
+[ext_resource type="Script" uid="uid://r5qr2174uvdp" path="res://scripts/blocks/PlantVoxelType.cs" id="4_6p01j"]
 
 [sub_resource type="VoxelBlockyModelMesh" id="VoxelBlockyModelMesh_pu4fh"]
 collision_aabbs = Array[AABB]([AABB(0.1, 0, 0.1, 0.8, 0.25, 0.8)])
@@ -17,3 +18,4 @@ metadata/_custom_type_script = "uid://dqt8kljgwk1on"
 resource_name = "short_grass"
 unique_name = &"short_grass"
 base_model = SubResource("VoxelBlockyModelMesh_pu4fh")
+script = ExtResource("4_6p01j")
