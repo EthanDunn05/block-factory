@@ -40,7 +40,7 @@ volumetric_fog_sky_affect = 0.0
 
 [node name="Node3D" type="Node3D"]
 
-[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
+[node name="VoxelTerrain" type="VoxelTerrain" parent="." node_paths=PackedStringArray("Player")]
 generator = ExtResource("1_1bvp3")
 mesher = SubResource("VoxelMesherBlocky_7a08w")
 max_view_distance = 256
@@ -48,6 +48,7 @@ generate_collisions = false
 area_edit_notification_enabled = true
 run_stream_in_editor = false
 script = ExtResource("3_1bvp3")
+Player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("Terrain") instance=ExtResource("3_7cye5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 64, 0)

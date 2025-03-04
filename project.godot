@@ -12,11 +12,13 @@ config_version=5
 
 config/name="Block Factory"
 run/main_scene="uid://rmvc4f5vy5t0"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+StartupNode="*res://scripts/Startup.cs"
 SceneManager="*res://scripts/SceneManager.cs"
 
 [display]

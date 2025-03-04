@@ -55,7 +55,6 @@ public class FactoryTerrainTool
 
             if (neighborType is BaseVoxelType neighborVt)
             {
-                GD.Print("Updating Neighbor");
                 neighborVt.NeighborUpdated(neighbor, pos, terrain);
             }
         }
