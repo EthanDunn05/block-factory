@@ -1,13 +1,14 @@
 ﻿using BlockFactory.scripts.block_library;
 using BlockFactory.scripts.blocks.attributes;
+using BlockFactory.scripts.blocks.interfaces;
 using BlockFactory.scripts.player;
 using Godot;
 
 namespace BlockFactory.scripts.blocks;
 
-public partial class SlabVoxelType : BaseVoxelType
+public partial class SlabVoxelType : BaseVoxelType, ICustomPlacementId
 {
-    public override void OnPlaced(Player player, Vector3I pos, Vector3 placementNormal, FactoryTerrain terrain)
+    public ulong GetId(Player player, Vector3I pos, Vector3 placementNormal, FactoryTerrain terrain)
     {
         var direction = SlabAttribute.Bottom;
 
@@ -36,9 +37,6 @@ public partial class SlabVoxelType : BaseVoxelType
             direction = SlabAttribute.West;
         }
 
-        var oldState = FactoryData.BlockLibrary.GetVoxelDataFromId(terrain.TerrainTool.GetVoxelId(pos));
-        var newValue = FactoryData.BlockLibrary.GetSingleAttributeId(oldState.Name, direction);
-        
-        terrain.TerrainTool.SetVoxel(pos, newValue);
+        return FactoryData.BlockLibrary.GetSingleAttributeId(UniqueName, direction);
     }
 }

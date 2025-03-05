@@ -15,15 +15,15 @@ distance_fade_min_distance = 5.0
 distance_fade_max_distance = 3.0
 
 [node name="Player" type="Node3D"]
-physics_interpolation_mode = 1
 script = ExtResource("1_ef0uo")
+CollisionBox = AABB(-0.4, 0, -0.4, 0.8, 1.8, 0.8)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.746271, 0, 0, 0, 1.87223, 0, 0, 0, 0.746271, 0, 0.94973, 0)
 mesh = SubResource("BoxMesh_sweqy")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54667, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 current = true
 fov = 90.0
 
@@ -35,7 +35,6 @@ view_distance = 192
 [node name="Movement" type="Node" parent="." node_paths=PackedStringArray("Camera")]
 script = ExtResource("2_cmgb4")
 Camera = NodePath("../Camera")
-collision = AABB(-0.4, 0, -0.4, 0.8, 1.8, 0.8)
 moveSpeed = 10.0
 accel = 50.0
 jumpForce = 10.0

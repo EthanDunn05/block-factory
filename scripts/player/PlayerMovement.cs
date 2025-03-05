@@ -1,3 +1,4 @@
+using System.Linq;
 using BlockFactory.scripts.block_library;
 using Godot;
 
@@ -8,7 +9,6 @@ public partial class PlayerMovement : Node
 	private Player player;
 
 	[Export] public Camera3D Camera;
-	[Export] private Aabb collision;
 
 	[Export] private float moveSpeed;
 	[Export] private float accel;
@@ -22,7 +22,10 @@ public partial class PlayerMovement : Node
 	private bool jumpHeld;
 	private Vector2 lookDir = Vector2.Zero;
 
-	private const float SpeedMult = 0.001f;
+	private Aabb collision;
+	private bool onFloor = true;
+	private float cameraHeight;
+
 	private Vector3 walkVel;
 	private Vector3 gravVel;
 	private Vector3 prevVel;
@@ -32,6 +35,10 @@ public partial class PlayerMovement : Node
 	public override void _Ready()
 	{
 		player = GetParent<Player>();
+
+		cameraHeight = Camera.Position.Y;
+
+		collision = player.CollisionBox;
 
 		Input.SetMouseMode(Input.MouseModeEnum.Captured);
 		mouseCaptured = true;
@@ -65,13 +72,19 @@ public partial class PlayerMovement : Node
 		}
 	}
 
-	// Physics process gives stuttery movement and isn't good for first person player movement.
 	public override void _Process(double delta)
+	{
+		var cameraPos = Camera.GlobalPosition;
+		var goalPos = player.GlobalPosition + new Vector3(0f, cameraHeight, 0f);
+		var newPos = cameraPos.Lerp(goalPos, (float) (delta * 15f));
+		Camera.GlobalPosition = goalPos;
+	}
+
+	// Physics process gives stuttery movement and isn't good for first person player movement.
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!HasNode(player.Terrain.GetPath())) return;
 		if (!player.TerrainTool.IsAreaEditable(new Aabb(collision.Position + player.Position, collision.Size))) return;
-		
-		var onFloor = CheckOnFloor();
 		
 		var forward = Camera.GlobalTransform.Basis * new Vector3(moveAxis.X, 0f, moveAxis.Y);
 		var walkDir = new Vector3(forward.X, 0f, forward.Z).Normalized();
@@ -94,30 +107,25 @@ public partial class PlayerMovement : Node
 
 		var totalVel = (walkVel + gravVel) * (float) delta;
 		var movement = boxMover.GetMotion(player.GlobalPosition, totalVel, collision, player.Terrain);
-		prevVel = movement;
 		player.GlobalTranslate(movement);
-	}
 
-	private bool CheckOnFloor()
-	{
-		// Yes this lags behind by a frame, but I don't care
-		if (prevVel.Y > -0.001f && prevVel.Y < 0.001f)
+		if (gravVel.Y < 0f)
 		{
-			var colRect = new Rect2(collision.Position.X, collision.Position.Z,collision.Size.X, collision.Size.Y);
-
-			// Raycast the 4 corners of the collision
-			if (CastFloor(colRect.Position)) return true;
-			if (CastFloor(colRect.Position + colRect.Size * Vector2.Right)) return true;
-			if (CastFloor(colRect.Position + colRect.Size * Vector2.Down)) return true;
-			if (CastFloor(colRect.Position + colRect.Size * Vector2.One)) return true;
+			const float tolerance = 0.001f;
+			if (Mathf.Abs(totalVel.Y) - Mathf.Abs(movement.Y) > tolerance)
+			{
+				onFloor = true;
+			}
+			else
+			{
+				onFloor = false;
+			}
 		}
-
-		return false;
-	}
-
-	private bool CastFloor(Vector2 offset)
-	{
-		var cast = player.TerrainTool.Raycast(player.GlobalPosition + new Vector3(offset.X, 0f, offset.Y), Vector3.Down, 0.1f);
-		return cast != null && cast.Distance < 0.01f;
+		else
+		{
+			onFloor = false;
+		}
+		
+		prevVel = movement;
 	}
 }

@@ -5,6 +5,7 @@ namespace BlockFactory.scripts.player;
 public partial class Player : Node3D
 {
 	[Export] public FactoryTerrain Terrain;
+	[Export] public Aabb CollisionBox;
 	public FactoryTerrainTool TerrainTool;
 
 	private bool spawned = false;

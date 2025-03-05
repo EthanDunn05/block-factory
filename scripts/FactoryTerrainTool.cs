@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using BlockFactory.scripts.block_library;
 using BlockFactory.scripts.blocks;
 using Godot;
+using Godot.Collections;
 
 namespace BlockFactory.scripts;
 
@@ -78,5 +80,20 @@ public class FactoryTerrainTool
     public bool IsAreaEditable(Aabb aabb)
     {
         return vt.IsAreaEditable(aabb);
+    }
+
+    public Array<Aabb> GetVoxelCollision(int voxelId)
+    {
+        var hoveredData = FactoryData.BlockLibrary.GetVoxelDataFromId(voxelId);
+        var hoveredType = FactoryData.BlockLibrary.GetTypeFromName(hoveredData.Name);
+        var variants = FactoryData.BlockLibrary.GetVariants(hoveredData.Name);
+
+        var model = hoveredType.BaseModel;
+        if (variants.Length > 0)
+        {
+            model = variants.First(data => data.Attributes.RecursiveEqual(hoveredData.Attributes)).Model;
+        }
+
+        return model.CollisionAabbs;
     }
 }
