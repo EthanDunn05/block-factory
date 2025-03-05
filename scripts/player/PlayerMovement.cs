@@ -77,7 +77,7 @@ public partial class PlayerMovement : Node
 		var cameraPos = Camera.GlobalPosition;
 		var goalPos = player.GlobalPosition + new Vector3(0f, cameraHeight, 0f);
 		var newPos = cameraPos.Lerp(goalPos, (float) (delta * 15f));
-		Camera.GlobalPosition = goalPos;
+		Camera.GlobalPosition = newPos;
 	}
 
 	// Physics process gives stuttery movement and isn't good for first person player movement.
